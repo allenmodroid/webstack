@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>Color Guessing Game</title>
+</head>
+
+<body onload="do_game()">
+    <script>
+    var color_list = ["blue", "cyan", "gold", "gray", "magenta", "orange", "red", "white", "yellow"];
+    var color_list_size = ((color_list.length)  - 1);
+    console.log(color_list.length);
+
+    var target_index;
+    var target;
+
+    var guess_input;
+    var color_index_in_array;
+
+    var finished = false;
+
+
+    function do_game() {
+
+        // Generate random number
+        var random_number = Math.random() * color_list_size;
+        console.log("Target nunber: " + random_number);
+
+        // Set random number to integer
+        var random_number_integer = Math.floor(random_number);
+        console.log("Target nunber integer: " + random_number_integer);
+
+        // Identify color in array list
+        target_index = random_number_integer + 1;
+        target = color_list[target_index];
+        console.log("Target: " + target_index);
+        console.log("Target color: " + target);
+
+        // For testing
+        alert("For testing - Target color: " + target);
+
+        while (!finished) {
+
+            // Prompt dialogue box
+            guess_input = prompt("I am thinking of one of these colors: \n\n" +
+                "blue,cyan,gold,gray,magenta,orange,red,white,yellow\n\n" +
+                "What color am I thinking of? ");
+
+            if (guess_input == target){
+                finished = true;
+            } else {
+                finished = false;
+            }
+
+        }
+
+    }
+
+    </script>
+</body>
+
+</html>
