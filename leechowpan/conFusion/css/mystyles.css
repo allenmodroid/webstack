@@ -25,17 +25,21 @@
 }
 
 .vertical-center{
-     min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
 
   display: flex;
   align-items: center;
 }
 
+.gap-right {
+  margin-right: 10px; 
+}
+
 
 body{
     padding:0px 0px 0px 0px;
     z-index:0;
-    background: #484848;
+    background: #000000;
 }
 
