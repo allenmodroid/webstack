@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Matching Game</title>
+    <style>
+    div {
+        position: absolute;
+    }
+    
+    img {
+        position: absolute;
+    }
+    
+    #rightSide {
+        left: 500px;
+        border-left: 1px solid black;
+        width: 500px;
+        height: 500px;
+    }
+    </style>
+</head>
+
+<body onload="generateFaces()">
+    <script>
+    var numberOfFaces = 5;
+    var imgTopPosition = 0;
+    var imgLeftPosition = 0;
+
+    function generateFaces() {
+
+        var imgTopPositionLimit = 400;
+        var imgLeftPositionLimit = 400;
+
+        // Print multiple smile
+        for (index = 0; index < numberOfFaces; index++) {
+
+            // *****************************************************    
+            //   Print in left pane
+            // *****************************************************   
+
+            // Point to left pane
+            var theLeftSide = document.getElementById("leftSide");
+
+            // Generate random numbers
+            var imgTopPosition_Random = Math.random() * imgTopPositionLimit;
+            var imgTopPosition_Random_Integer = Math.floor(imgTopPosition_Random);
+            console.log("Top = " + imgTopPosition_Random_Integer);
+
+            var imgLeftPosition_Random = Math.random() * imgLeftPositionLimit;
+            var imgLeftPosition_Random_Integer = Math.floor(imgLeftPosition_Random);
+            console.log("Left = " + imgLeftPosition_Random_Integer);
+
+            // Create img element
+            var img = document.createElement("img");
+
+            // Setup img attributes
+            img.src = "smile.png";
+            img.style.top = imgTopPosition_Random_Integer + "px";
+            img.style.left = imgLeftPosition_Random_Integer + "px";
+
+            // Append to left pane
+            theLeftSide.appendChild(img);
+
+            // For debugging purposes only
+            console.log(index);
+        }
+
+        // *****************************************************    
+        //   Print in right pane
+        // *****************************************************   
+
+        // Point to right pane
+        var theRightSide = document.getElementById("rightSide");
+
+        // Clone left pane
+        var leftSideImages = theLeftSide.cloneNode(true);
+
+        // Delete last child
+        leftSideImages.removeChild(leftSideImages.lastChild);
+
+        // Print to right pane
+        theRightSide.appendChild(leftSideImages);
+
+
+        // *****************************************************    
+        //   Event handlers and game logic
+        // *****************************************************  
+        var theBody = document.getElementsByTagName("body")[0];
+
+        // Adding an event handler function to the extra face
+        theLeftSide.lastChild.onclick = function nextLevel(event) {
+
+            console.log("Clicked on last left child");
+
+            // Delete all children under leftside
+            while(theLeftSide.firstChild){
+                theLeftSide.removeChild(theLeftSide.firstChild);
+            }
+
+            // Delete all children under rightside
+            while(theRightSide.firstChild){
+                theRightSide.removeChild(theRightSide.firstChild);
+            }
+
+            event.stopPropagation();
+            numberOfFaces += 5;
+            generateFaces();
+
+        }
+
+        // Adding an event handler function to the body
+        theBody.onclick = function gameOver() {
+
+            alert("Game Over!");
+            theBody.onclick = null;
+            theLeftSide.lastChild.onclick = null;
+
+        };
+
+    }
+    </script>
+    <h2>Matching Game</h2>
+    <p>Click on the extra simling face on the left</p>
+    <div id="leftSide">
+        <!-- Left Side -->
+    </div>
+    <div id="rightSide">
+        <!-- Right Side -->
+    </div>
+</body>
+
+</html>
