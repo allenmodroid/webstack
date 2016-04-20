@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('conFusion', ['ionic', 'conFusion.controllers'])
+angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,7 +36,8 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers'])
     url: '/home',
     views: {
       'mainContent': {
-        templateUrl: 'templates/home.html'
+        templateUrl: 'templates/home.html',
+          controller: 'IndexController'
       }
     }
   })
@@ -45,7 +46,8 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers'])
       url: '/aboutus',
       views: {
         'mainContent': {
-          templateUrl: 'templates/aboutus.html'
+          templateUrl: 'templates/aboutus.html',
+          controller: 'AboutController'
         }
       }
     })
@@ -64,7 +66,7 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers'])
       views: {
         'mainContent': {
           templateUrl: 'templates/menu.html',
-          controller: ''
+          controller: 'MenuController'
         }
       }
     })
@@ -74,7 +76,7 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers'])
     views: {
       'mainContent': {
         templateUrl: 'templates/dishdetail.html',
-        controller: ''
+        controller: 'DishDetailController'
       }
     }
   });
