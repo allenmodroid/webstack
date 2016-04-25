@@ -12,8 +12,9 @@ angular.module('conFusion.controllers', [])
     // Form data for the login modal
     $scope.loginData = {};
     $scope.reservation = {};
-    $scope.form = {};
 
+
+    // ****************************************************************
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope
@@ -42,6 +43,8 @@ angular.module('conFusion.controllers', [])
         }, 1000);
     };
 
+
+    // ****************************************************************
     // Create the reserve modal that we will use later
     $ionicModal.fromTemplateUrl('templates/reserve.html', {
         scope: $scope
@@ -114,11 +117,11 @@ angular.module('conFusion.controllers', [])
     };
 
     $scope.addFavorite = function(index) {
-        console.log("addFavorite() in MenuController");
+        console.log("addFavorite() function in MenuController");
         console.log("index is " + index);
         favoriteFactory.addToFavorites(index);
         $ionicListDelegate.closeOptionButtons();
-    }
+    };
 
 }])
 
@@ -153,7 +156,7 @@ angular.module('conFusion.controllers', [])
     };
 }])
 
-.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicLoading', '$ionicPopover','$ionicModal', function($scope, $stateParams, menuFactory, favoriteFactory, baseURL, $ionicLoading, $ionicPopover,$ionicModal) {
+.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicLoading', '$ionicPopover', '$ionicModal',function($scope, $stateParams, menuFactory, favoriteFactory, baseURL, $ionicLoading, $ionicPopover,$ionicModal) {
 
     $scope.baseURL = baseURL;
     $scope.dish = {};
@@ -203,56 +206,58 @@ angular.module('conFusion.controllers', [])
         // Execute action
     });
 
+    // Add dish to Favorite
     $scope.addFavorite = function() {
-        console.log("addFavorite() in DishDetailController");
+        console.log("addFavorite() function in DishDetailController");
         favoriteFactory.addToFavorites($scope.dish.id);
         $scope.popover.hide();
     };
 
-    //***************************************************************
-    // Comment modal
-    //***************************************************************
-    $ionicModal.fromTemplateUrl('templates/dish-comment.html', {
+
+    // ****************************************************************
+    // Create the dish-comment modal 
+    $scope.dishCommentFormVar = $ionicModal.fromTemplateUrl('templates/dish-comment.html', {
         scope: $scope
     }).then(function(modal) {
-        $scope.dishcommentform = modal;
+        $scope.dishCommentFormVar = modal;
     });
 
-    // Triggered in the comment modal to close it
-    $scope.closeCommentForm = function() {
-        $scope.dishcommentform.hide();
+    // Triggered in the dish-cmment modal to close it
+    $scope.closeDishComment = function() {
+        $scope.dishCommentFormVar.hide();
         $scope.closePopover();
     };
 
-   
-    $scope.openCommentForm = function() {
-        console.log("openCommentForm() function in DishDetailController");
-        $scope.dishcommentform.show();
+    // Open the dish-comment modal
+    $scope.openDishComment = function() {
+        console.log("openDishComment() function in DishDetailController");
+        $scope.dishCommentFormVar.show();
     };
 
+
+    // ****************************************************************
+    // Submit comment
     $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
 
     $scope.submitComment = function() {
+
         $scope.mycomment.date = new Date().toISOString();
         console.log($scope.mycomment);
 
         $scope.dish.comments.push($scope.mycomment);
         menuFactory.getDishes().update({ id: $scope.dish.id }, $scope.dish);
 
-        $scope.form.commentForm.$setPristine();
-        $scope.closeCommentForm();
-        $scope.closePopover();
-
+        //$scope.commentForm.$setPristine();
 
         $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
+        $scope.closeDishComment();
     };
-
 
 }])
 
+// Sample code
 .controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
 
-    /*
     $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
 
     $scope.submitComment = function() {
@@ -266,7 +271,7 @@ angular.module('conFusion.controllers', [])
         $scope.commentForm.$setPristine();
 
         $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
-    }*/
+    }
 }])
 
 // implement the IndexController and About Controller here
