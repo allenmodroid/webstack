@@ -8,3 +8,6 @@ json-server --watch db.json
 
 # =========
 ionic serve --lab
+
+# =========
+screenshot --fullpage
