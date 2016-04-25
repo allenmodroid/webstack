@@ -171,18 +171,22 @@ angular.module('conFusion.controllers', [])
             }
         );
 
-
+    //***************************************************************
+    // Popover section
+    //***************************************************************
     $scope.popover = $ionicPopover.fromTemplateUrl('templates/dish-detail-popover.html', {
         scope: $scope
     }).then(function(popover) {
         $scope.popover = popover;
     });
 
+    // Open Popover
     $scope.openPopover = function($event) {
         console.log("call openPopover()");
         $scope.popover.show($event);
     };
 
+    // Close Popover
     $scope.closePopover = function() {
         console.log("call closePopover()");
         $scope.popover.hide();
@@ -203,6 +207,9 @@ angular.module('conFusion.controllers', [])
         // Execute action
     });
 
+    //***************************************************************
+    // Add dish to favaroite from popover
+    //***************************************************************
     $scope.addFavorite = function() {
         console.log("addFavorite() in DishDetailController");
         favoriteFactory.addToFavorites($scope.dish.id);
@@ -218,32 +225,40 @@ angular.module('conFusion.controllers', [])
         $scope.dishcommentform = modal;
     });
 
-    // Triggered in the comment modal to close it
+    // Close comment form modal
     $scope.closeCommentForm = function() {
         $scope.dishcommentform.hide();
         $scope.closePopover();
     };
 
-   
+    // Open comment form modal
     $scope.openCommentForm = function() {
         console.log("openCommentForm() function in DishDetailController");
         $scope.dishcommentform.show();
     };
 
+    //***************************************************************
+    // Submit comment for dish
+    //***************************************************************
+    
+    // Data object for form
     $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
 
+    // Submit function for form
     $scope.submitComment = function() {
+        
+        // Datestamp comment time 
         $scope.mycomment.date = new Date().toISOString();
         console.log($scope.mycomment);
 
+        // Add comments to json
         $scope.dish.comments.push($scope.mycomment);
         menuFactory.getDishes().update({ id: $scope.dish.id }, $scope.dish);
 
+        // Housekeeping
         $scope.form.commentForm.$setPristine();
         $scope.closeCommentForm();
         $scope.closePopover();
-
-
         $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
     };
 
@@ -252,7 +267,6 @@ angular.module('conFusion.controllers', [])
 
 .controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
 
-    /*
     $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
 
     $scope.submitComment = function() {
@@ -266,7 +280,7 @@ angular.module('conFusion.controllers', [])
         $scope.commentForm.$setPristine();
 
         $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
-    }*/
+    }
 }])
 
 // implement the IndexController and About Controller here

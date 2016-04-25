@@ -91,6 +91,7 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.service
     }
   })
 
+  /*
   .state('app.dish-detail-popover.html', {
     url: 'dish-detail-popover',
     views: {
@@ -99,7 +100,7 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers','conFusion.service
         controller: 'DishDetailController'
       }
     }
-  })
+  })*/
   ;
 
   // if none of the above states are matched, use this as the fallback
