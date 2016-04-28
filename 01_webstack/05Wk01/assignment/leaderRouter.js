@@ -29,24 +29,24 @@ leaderRouter.route('/')
 //****************************************************
 // Config for leadership route with parameter
 //****************************************************
-leaderRouter.route('/:dishId')
+leaderRouter.route('/:leaderId')
     .all(function(req, res, next) {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
         next();
     })
 
 .get(function(req, res, next) {
-    res.end('Will send details of the leader: ' + req.params.dishId + ' to you!');
+    res.end('Will send details of the leader: ' + req.params.leaderId + ' to you!');
 })
 
 .put(function(req, res, next) {
-    res.write('Updating the leader: ' + req.params.dishId + '\n');
+    res.write('Updating the leader: ' + req.params.leaderId + '\n');
     res.end('Will update the leader: ' + req.body.name +
         ' with details: ' + req.body.description);
 })
 
 .delete(function(req, res, next) {
-    res.end('Deleting dish: ' + req.params.dishId);
+    res.end('Deleting leader: ' + req.params.leaderId);
 });
 
 module.exports = leaderRouter;

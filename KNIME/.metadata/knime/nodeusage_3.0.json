@@ -1,0 +1,109 @@
+
+{
+    "version":"3.1.2.v201603311235",
+    "created":"2016-04-26 13:09",
+    "nodestats":{
+        "nodes":[
+            {
+                "id":"org.knime.base.node.io.filereader.FileReaderNodeFactory#File Reader",
+                "nrexecs":1,
+                "exectime":1568,
+                "nrcreated":0,
+                "successor":"org.knime.base.node.preproc.split2.SplitNodeFactory2#Column Splitter"
+            },
+            {
+                "id":"org.knime.base.node.preproc.partition.PartitionNodeFactory#Partitioning",
+                "nrexecs":1,
+                "exectime":1040,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.mine.bayes.naivebayes.learner2.NaiveBayesLearnerNodeFactory3#Naive Bayes Learner",
+                "nrexecs":2,
+                "exectime":331,
+                "nrcreated":1,
+                "successor":"org.knime.base.node.mine.bayes.naivebayes.predictor3.NaiveBayesPredictorNodeFactory2#Naive Bayes Predictor"
+            },
+            {
+                "id":"org.knime.base.node.mine.bayes.naivebayes.predictor3.NaiveBayesPredictorNodeFactory2#Naive Bayes Predictor",
+                "nrexecs":2,
+                "exectime":3371,
+                "nrcreated":1,
+                "successor":"org.knime.base.node.mine.scorer.accuracy.AccuracyScorerNodeFactory#Scorer"
+            },
+            {
+                "id":"org.knime.base.node.mine.scorer.accuracy.AccuracyScorerNodeFactory#Scorer",
+                "nrexecs":2,
+                "exectime":273,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.io.arffreader.ARFFReaderNodeFactory#ARFF Reader",
+                "nrexecs":2,
+                "exectime":197,
+                "nrcreated":2,
+                "successor":"org.knime.base.node.mine.bayes.naivebayes.learner2.NaiveBayesLearnerNodeFactory3#Naive Bayes Learner"
+            },
+            {
+                "id":"org.knime.base.node.preproc.split2.SplitNodeFactory2#Column Splitter",
+                "nrexecs":1,
+                "exectime":9,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.preproc.filter.nominal.NominalValueRowFilterNodeFactory#Nominal Value Row Filter",
+                "nrexecs":1,
+                "exectime":311,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.preproc.filter.row.RowFilterNodeFactory#Row Filter",
+                "nrexecs":1,
+                "exectime":475,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.preproc.filter.column.FilterColumnNodeFactory#Column Filter",
+                "nrexecs":1,
+                "exectime":1,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.preproc.joiner.Joiner2NodeFactory#Joiner",
+                "nrexecs":1,
+                "exectime":390,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.viz.plotter.box.BoxPlotNodeFactory#Box Plot",
+                "nrexecs":1,
+                "exectime":1095,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.stats.viz.extended.ExtendedStatisticsNodeFactory#Statistics",
+                "nrexecs":1,
+                "exectime":1280,
+                "nrcreated":0,
+                "successor":"n/a"
+            }
+        ],
+        "metaNodes":{
+        },
+        "wrappedNodes":{
+        }
+    },
+    "uptime":5407654,
+    "launches":3,
+    "timeSinceLastStart":15309324,
+    "crashes":0,
+    "properlyShutDown":true
+}

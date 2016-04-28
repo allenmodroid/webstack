@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<met:KNIMEMetaInfo xmlns:met="http://www.knime.org/2.9/metainfo">
+  <met:element form="text" name="Author">KNIME</met:element>
+  <met:element form="date" name="Creation Date">22/6/2010</met:element>
+  <met:element form="multiline" name="Comments">Flow splittes numeric from nominal columns, does some filtering and then joins the 
+data back again. Additionally, the data is visualized in a Box Plot and Statistics' 
+values are computed.</met:element>
+</met:KNIMEMetaInfo>

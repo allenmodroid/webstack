@@ -1,0 +1,7 @@
+knime://knime.workflow/data/shuttle.data
+file:/Users/Aaron/Dropbox/Workspaces/working/Public%20Examples/003001_SimpleFlow_with_Statistics/File%20Reader%20(%231)/drop/adult.data
+file:/Volumes/Disk1/Coursera/zSpace/KNIME/003002_StandardPreprocessing_Download_Template/File%20Reader%20(%231)/drop/adult.data
+file:/Users/Aaron/Dropbox/Workspaces/working/Public%20Examples/003002_StandardPreprocessing/File%20Reader%20(%231)/drop/adult.data
+knime://knime.workflow/data.all
+file:/private/var/folders/xl/6kmm02qx7672phkltq21bbvr0000gn/T/knime_temp_space_mopom_60183/003002_StandardPreprocessing60187/003002_StandardPreprocessing/File%20Reader%20(%231)/drop/adult.data
+knime://knime.workflow/iris.csv

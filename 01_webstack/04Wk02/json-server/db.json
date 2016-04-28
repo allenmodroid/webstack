@@ -103,6 +103,12 @@
           "comment": "test12",
           "author": "test12",
           "date": "2016-04-25T15:09:25.292Z"
+        },
+        {
+          "rating": "4",
+          "comment": "review1",
+          "author": "review1",
+          "date": "2016-04-26T22:57:39.191Z"
         }
       ]
     },
