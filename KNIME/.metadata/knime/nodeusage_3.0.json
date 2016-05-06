@@ -6,15 +6,15 @@
         "nodes":[
             {
                 "id":"org.knime.base.node.io.filereader.FileReaderNodeFactory#File Reader",
-                "nrexecs":1,
-                "exectime":1568,
-                "nrcreated":0,
+                "nrexecs":5,
+                "exectime":2518,
+                "nrcreated":1,
                 "successor":"org.knime.base.node.preproc.split2.SplitNodeFactory2#Column Splitter"
             },
             {
                 "id":"org.knime.base.node.preproc.partition.PartitionNodeFactory#Partitioning",
-                "nrexecs":1,
-                "exectime":1040,
+                "nrexecs":6,
+                "exectime":2362,
                 "nrcreated":0,
                 "successor":"n/a"
             },
@@ -34,8 +34,8 @@
             },
             {
                 "id":"org.knime.base.node.mine.scorer.accuracy.AccuracyScorerNodeFactory#Scorer",
-                "nrexecs":2,
-                "exectime":273,
+                "nrexecs":17,
+                "exectime":1353,
                 "nrcreated":0,
                 "successor":"n/a"
             },
@@ -94,6 +94,41 @@
                 "exectime":1280,
                 "nrcreated":0,
                 "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.io.table.read.ReadTableNodeFactory#Table Reader",
+                "nrexecs":1,
+                "exectime":1341,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.viz.property.color.ColorManager2NodeFactory#Color Manager",
+                "nrexecs":8,
+                "exectime":11,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.viz.property.color.ColorAppender2NodeFactory#Color Appender",
+                "nrexecs":8,
+                "exectime":57,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.mine.decisiontree2.learner2.DecisionTreeLearnerNodeFactory3#Decision Tree Learner",
+                "nrexecs":15,
+                "exectime":2359,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory#Decision Tree Predictor",
+                "nrexecs":15,
+                "exectime":5686,
+                "nrcreated":0,
+                "successor":"n/a"
             }
         ],
         "metaNodes":{
@@ -101,9 +136,9 @@
         "wrappedNodes":{
         }
     },
-    "uptime":5407654,
-    "launches":3,
-    "timeSinceLastStart":15309324,
+    "uptime":4675452,
+    "launches":4,
+    "timeSinceLastStart":2478849,
     "crashes":0,
     "properlyShutDown":true
 }
