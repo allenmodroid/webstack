@@ -1,6 +1,6 @@
 angular.module('conFusion.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $localStorage) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -10,7 +10,7 @@ angular.module('conFusion.controllers', [])
     //});
 
     // Form data for the login modal
-    $scope.loginData = {};
+    $scope.loginData = $localStorage.getObject('userinfo','{}');
     $scope.reservation = {};
     $scope.form = {};
 
@@ -34,6 +34,7 @@ angular.module('conFusion.controllers', [])
     // Perform the login action when the user submits the login form
     $scope.doLogin = function() {
         console.log('Doing login', $scope.loginData);
+        $localStorage.storeObject('userinfo',$scope.loginData);
 
         // Simulate a login delay. Remove this and replace with your login
         // code if using a login system
@@ -72,7 +73,7 @@ angular.module('conFusion.controllers', [])
 })
 
 
-.controller('MenuController', ['$scope', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicListDelegate',function($scope, menuFactory, favoriteFactory, baseURL, $ionicListDelegate) {
+.controller('MenuController', ['$scope', 'dishes', 'favoriteFactory', 'baseURL', '$ionicListDelegate',function($scope, dishes, favoriteFactory, baseURL, $ionicListDelegate) {
 
     $scope.baseURL = baseURL;
     $scope.tab = 1;
@@ -81,14 +82,8 @@ angular.module('conFusion.controllers', [])
     $scope.showMenu = false;
     $scope.message = "Loading ...";
 
-    $scope.dishes = menuFactory.query(
-        function(response) {
-            $scope.dishes = response;
-            $scope.showMenu = true;
-        },
-        function(response) {
-            $scope.message = "Error: " + response.status + " " + response.statusText;
-        });
+    // Making use of injected data.
+    $scope.dishes = dishes;
 
 
     $scope.select = function(setTab) {
@@ -153,7 +148,8 @@ angular.module('conFusion.controllers', [])
     };
 }])
 
-.controller('DishDetailController', ['$scope', '$stateParams', 'dish', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicLoading', '$ionicPopover','$ionicModal', function($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL, $ionicLoading, $ionicPopover,$ionicModal) {
+
+.controller('DishDetailController', ['$scope', '$stateParams', 'dish', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicLoading', '$ionicPopover','$ionicModal', function($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL, $ionicLoading, $ionicPopover, $ionicModal) {
 
     $scope.baseURL = baseURL;
     $scope.dish = {};
@@ -274,41 +270,33 @@ angular.module('conFusion.controllers', [])
 
 // implement the IndexController and About Controller here
 
-.controller('IndexController', ['$scope', 'menuFactory', 'promotionFactory', 'corporateFactory', 'baseURL', function ($scope, menuFactory, promotionFactory, corporateFactory, baseURL) {
+.controller('IndexController', ['$scope', 'dish', 'leader', 'promotion', 'baseURL', function ($scope, dish, leader, promotion, baseURL) {
     
     $scope.baseURL = baseURL;
-    $scope.leader = corporateFactory.get({ id: 3 });
 
-    $scope.showDish = false;
-    $scope.message = "Loading ...";
-
-    $scope.dish = menuFactory.get({ id: 0 })
-        .$promise.then(
-            function(response) {
-                $scope.dish = response;
-                $scope.showDish = true;
-            },
-            function(response) {
-                $scope.message = "Error: " + response.status + " " + response.statusText;
-            }
-        );
-    $scope.promotion = menuFactory.get({ id: 0 });
+    // Making use of the injected data.
+    $scope.leader = leader;
+    $scope.dish = dish;
+    $scope.promotion = promotion;
 }])
 
-.controller('AboutController', ['$scope', 'corporateFactory', 'baseURL', function($scope, corporateFactory, baseURL) {
+.controller('AboutController', ['$scope', 'leaders', 'baseURL', function($scope, leaders, baseURL) {
 
     $scope.baseURL = baseURL;
-    $scope.leaders = corporateFactory.query();
+
+    // Making use of the injected data.
+    $scope.leaders = leaders;
     console.log($scope.leaders);
 
 }])
 
-.controller('FavoritesController', ['$scope', 'dishes', 'favorites', 'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout', function ($scope, dishes, favorites, favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading, $timeout) {
+.controller('FavoritesController', ['$scope', 'dishes', 'favorites', 'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout',function ($scope, dishes, favorites, favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading, $timeout) {
     
     $scope.baseURL = baseURL;
     $scope.shouldShowDelete = false;
 
     $scope.favorites = favorites;
+
     $scope.dishes = dishes;
 
     $scope.toggleDelete = function() {

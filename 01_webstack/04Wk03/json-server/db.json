@@ -44,6 +44,12 @@
           "comment": "test",
           "author": "test",
           "date": "2016-05-07T06:26:00.840Z"
+        },
+        {
+          "rating": "3",
+          "comment": "300",
+          "author": "300",
+          "date": "2016-05-07T06:59:31.697Z"
         }
       ]
     },
