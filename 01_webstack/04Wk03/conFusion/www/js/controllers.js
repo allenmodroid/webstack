@@ -1,7 +1,7 @@
 angular.module('conFusion.controllers', [])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $localStorage) {
-    
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -10,7 +10,7 @@ angular.module('conFusion.controllers', [])
     //});
 
     // Form data for the login modal
-    $scope.loginData = $localStorage.getObject('userinfo','{}');
+    $scope.loginData = {};
     $scope.reservation = {};
     $scope.form = {};
 
@@ -34,7 +34,6 @@ angular.module('conFusion.controllers', [])
     // Perform the login action when the user submits the login form
     $scope.doLogin = function() {
         console.log('Doing login', $scope.loginData);
-        $localStorage.storeObject('userinfo',$scope.loginData);
 
         // Simulate a login delay. Remove this and replace with your login
         // code if using a login system
@@ -154,12 +153,10 @@ angular.module('conFusion.controllers', [])
     };
 }])
 
-.controller('DishDetailController', ['$scope', '$stateParams', 'dish', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicPopover', '$ionicModal', function ($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL, $ionicPopover, $ionicModal) {
+.controller('DishDetailController', ['$scope', '$stateParams', 'dish', 'menuFactory', 'favoriteFactory', 'baseURL', '$ionicLoading', '$ionicPopover','$ionicModal', function($scope, $stateParams, dish, menuFactory, favoriteFactory, baseURL, $ionicLoading, $ionicPopover,$ionicModal) {
 
     $scope.baseURL = baseURL;
     $scope.dish = {};
-    $scope.showDish = false;
-    $scope.message = "Loading ...";
 
     $scope.dish = dish;
 
@@ -245,7 +242,7 @@ angular.module('conFusion.controllers', [])
 
         // Add comments to json
         $scope.dish.comments.push($scope.mycomment);
-        menuFactory.getDishes().update({ id: $scope.dish.id }, $scope.dish);
+        menuFactory.update({ id: $scope.dish.id }, $scope.dish);
 
         // Housekeeping
         $scope.form.commentForm.$setPristine();
@@ -253,6 +250,8 @@ angular.module('conFusion.controllers', [])
         $scope.closePopover();
         $scope.mycomment = { rating: 5, comment: "", author: "", date: "" };
     };
+
+
 }])
 
 .controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
@@ -265,7 +264,7 @@ angular.module('conFusion.controllers', [])
         console.log($scope.mycomment);
 
         $scope.dish.comments.push($scope.mycomment);
-        menuFactory.getDishes().update({ id: $scope.dish.id }, $scope.dish);
+        menuFactory.update({ id: $scope.dish.id }, $scope.dish);
 
         $scope.commentForm.$setPristine();
 
@@ -276,11 +275,13 @@ angular.module('conFusion.controllers', [])
 // implement the IndexController and About Controller here
 
 .controller('IndexController', ['$scope', 'menuFactory', 'promotionFactory', 'corporateFactory', 'baseURL', function ($scope, menuFactory, promotionFactory, corporateFactory, baseURL) {
-
+    
     $scope.baseURL = baseURL;
     $scope.leader = corporateFactory.get({ id: 3 });
+
     $scope.showDish = false;
     $scope.message = "Loading ...";
+
     $scope.dish = menuFactory.get({ id: 0 })
         .$promise.then(
             function(response) {
@@ -303,12 +304,12 @@ angular.module('conFusion.controllers', [])
 }])
 
 .controller('FavoritesController', ['$scope', 'dishes', 'favorites', 'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout', function ($scope, dishes, favorites, favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading, $timeout) {
+    
     $scope.baseURL = baseURL;
     $scope.shouldShowDelete = false;
 
     $scope.favorites = favorites;
     $scope.dishes = dishes;
-
 
     $scope.toggleDelete = function() {
         $scope.shouldShowDelete = !$scope.shouldShowDelete;

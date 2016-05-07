@@ -15,3 +15,7 @@ screenshot --fullpage
 # =========
 git reset --hard origin/master
 git pull origin master
+
+# =========
+You need to add cordova whitelist under your project. Try the following -
+$ cordova plugin add cordova-plugin-whitelist
