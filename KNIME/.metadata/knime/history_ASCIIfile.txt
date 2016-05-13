@@ -1,8 +1,8 @@
+file:/Users/mopom/Desktop/associationRules/supermarketdataset.csv
+knime://knime.workflow/../shoppingList.csv
+knime://knime.workflow/data.all
+file:/Users/mopom/Desktop/associationRules/shoppingList.csv
+file:/Users/mopom/Desktop/shoppingList.csv
+file:/Volumes/Disk1/Coursera/zSpace/02_big_data/associationRules/shoppingList.csv
 file:/Users/mopom/Desktop/bezdekIris.data.txt
 file:/Users/mopom/Desktop/iris.data.csv
-file:/Users/mopom/Desktop/data.csv
-knime://knime.workflow/data.all
-knime://knime.workflow/data/shuttle.data
-file:/Users/Aaron/Dropbox/Workspaces/working/Public%20Examples/003001_SimpleFlow_with_Statistics/File%20Reader%20(%231)/drop/adult.data
-file:/Volumes/Disk1/Coursera/zSpace/KNIME/003002_StandardPreprocessing_Download_Template/File%20Reader%20(%231)/drop/adult.data
-file:/Users/Aaron/Dropbox/Workspaces/working/Public%20Examples/003002_StandardPreprocessing/File%20Reader%20(%231)/drop/adult.data

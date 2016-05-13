@@ -1,15 +1,15 @@
 
 {
-    "version":"3.1.2.v201603311235",
+    "version":"3.1.3.v201604221432",
     "created":"2016-04-26 13:09",
     "nodestats":{
         "nodes":[
             {
                 "id":"org.knime.base.node.io.filereader.FileReaderNodeFactory#File Reader",
-                "nrexecs":5,
-                "exectime":2518,
-                "nrcreated":1,
-                "successor":"org.knime.base.node.preproc.split2.SplitNodeFactory2#Column Splitter"
+                "nrexecs":12,
+                "exectime":3515,
+                "nrcreated":2,
+                "successor":"org.knime.base.node.preproc.bitvector.create.CreateBitVectorNodeFactory#Create Bit Vector"
             },
             {
                 "id":"org.knime.base.node.preproc.partition.PartitionNodeFactory#Partitioning",
@@ -129,6 +129,48 @@
                 "exectime":5686,
                 "nrcreated":0,
                 "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.collection.list.create2.CollectionCreate2NodeFactory#Create Collection Column",
+                "nrexecs":5,
+                "exectime":19,
+                "nrcreated":0,
+                "successor":"org.knime.base.node.mine.subgroupminer.SubgroupMinerFactory2#Association Rule Learner"
+            },
+            {
+                "id":"org.knime.base.node.preproc.bitvector.create.CreateBitVectorNodeFactory#Create Bit Vector",
+                "nrexecs":7,
+                "exectime":211,
+                "nrcreated":0,
+                "successor":"org.knime.base.node.mine.subgroupminer.SubgroupMinerFactory2#Association Rule Learner"
+            },
+            {
+                "id":"org.knime.base.node.preproc.cellsplit.CellSplitterNodeFactory#Cell Splitter",
+                "nrexecs":1,
+                "exectime":2,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.mine.subgroupminer.SubgroupMinerFactory2#Association Rule Learner",
+                "nrexecs":6,
+                "exectime":4103,
+                "nrcreated":1,
+                "successor":"com.knime.reporting.nodes.dataset.ReportingDataSetNodeFactory#Data to Report"
+            },
+            {
+                "id":"org.knime.base.node.io.tablecreator.TableCreator2NodeFactory#Table Creator",
+                "nrexecs":1,
+                "exectime":2,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"com.knime.reporting.nodes.dataset.ReportingDataSetNodeFactory#Data to Report",
+                "nrexecs":1,
+                "exectime":10,
+                "nrcreated":1,
+                "successor":"n/a"
             }
         ],
         "metaNodes":{
@@ -136,9 +178,9 @@
         "wrappedNodes":{
         }
     },
-    "uptime":4675452,
-    "launches":4,
-    "timeSinceLastStart":2478849,
+    "uptime":3454392,
+    "launches":7,
+    "timeSinceLastStart":3010302,
     "crashes":0,
     "properlyShutDown":true
 }

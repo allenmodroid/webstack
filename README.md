@@ -4,6 +4,10 @@ git commit -am "<commit message>"
 git push
 
 # =========
+brew install bfg
+bfg --strip-blobs-bigger-than 90M
+
+# =========
 json-server --watch db.json
 
 # =========
