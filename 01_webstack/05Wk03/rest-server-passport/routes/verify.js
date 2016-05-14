@@ -8,12 +8,12 @@ exports.getToken = function (user) {
     });
 };
 
-exports.verifyAdmin = function (req,res,next) {
+exports.verifyAdmin = function (req, next) {
     
     var adminFlag = req.decoded._doc.admin;
 
     if (adminFlag){
-        console.log('You are an admin');
+        // if user is admin, continue
         next();
     } else {
         // if user not an admin
