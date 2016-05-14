@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+// Connect to mongoose
 var url = 'mongodb://localhost:27017/conFusion';
 mongoose.connect(url);
 var db = mongoose.connection;
