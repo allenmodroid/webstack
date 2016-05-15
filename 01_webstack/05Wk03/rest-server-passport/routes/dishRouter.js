@@ -64,21 +64,31 @@ dishRouter.route('/:dishId')
     });
 })
 
-.put(function (req, res, next) {
-    Dishes.findByIdAndUpdate(req.params.dishId, {
-        $set: req.body
-    }, {
-        new: true
-    }, function (err, dish) {
+.put(Verify.verifyOrdinaryUser,function (req, res, next) {
+    Verify.verifyAdmin (req, function (err, resp) {
+        // Catch error and throw
         if (err) throw err;
-        res.json(dish);
+
+        Dishes.findByIdAndUpdate(req.params.dishId, {
+            $set: req.body
+        }, {
+            new: true
+        }, function (err, dish) {
+            if (err) throw err;
+            res.json(dish);
+        });
     });
 })
 
-.delete(function (req, res, next) {
-    Dishes.findByIdAndRemove(req.params.dishId, function (err, resp) {
+.delete(Verify.verifyOrdinaryUser,function (req, res, next) {
+    Verify.verifyAdmin (req, function (err, resp) {
+        // Catch error and throw
         if (err) throw err;
-        res.json(resp);
+
+        Dishes.findByIdAndRemove(req.params.dishId, function (err, resp) {
+            if (err) throw err;
+            res.json(resp);
+        });
     });
 });
 
@@ -93,30 +103,38 @@ dishRouter.route('/:dishId/comments')
     });
 })
 
-.post(function (req, res, next) {
-    Dishes.findById(req.params.dishId, function (err, dish) {
+.post(Verify.verifyOrdinaryUser,function (req, res, next) {
+    Verify.verifyAdmin (req, function (err, resp) {
+        // Catch error and throw
         if (err) throw err;
-        dish.comments.push(req.body);
-        dish.save(function (err, dish) {
+        Dishes.findById(req.params.dishId, function (err, dish) {
             if (err) throw err;
-            console.log('Updated Comments!');
-            res.json(dish);
+            dish.comments.push(req.body);
+            dish.save(function (err, dish) {
+                if (err) throw err;
+                console.log('Updated Comments!');
+                res.json(dish);
+            });
         });
     });
 })
 
-.delete(function (req, res, next) {
-    Dishes.findById(req.params.dishId, function (err, dish) {
+.delete(Verify.verifyOrdinaryUser,function (req, res, next) {
+    Verify.verifyAdmin (req, function (err, resp) {
+        // Catch error and throw
         if (err) throw err;
-        for (var i = (dish.comments.length - 1); i >= 0; i--) {
-            dish.comments.id(dish.comments[i]._id).remove();
-        }
-        dish.save(function (err, result) {
+        Dishes.findById(req.params.dishId, function (err, dish) {
             if (err) throw err;
-            res.writeHead(200, {
-                'Content-Type': 'text/plain'
+            for (var i = (dish.comments.length - 1); i >= 0; i--) {
+                dish.comments.id(dish.comments[i]._id).remove();
+            }
+            dish.save(function (err, result) {
+                if (err) throw err;
+                res.writeHead(200, {
+                    'Content-Type': 'text/plain'
+                });
+                res.end('Deleted all comments!');
             });
-            res.end('Deleted all comments!');
         });
     });
 });
@@ -132,27 +150,35 @@ dishRouter.route('/:dishId/comments/:commentId')
     });
 })
 
-.put(function (req, res, next) {
-    // We delete the existing commment and insert the updated
-    // comment as a new comment
-    Dishes.findById(req.params.dishId, function (err, dish) {
+.put(Verify.verifyOrdinaryUser,function (req, res, next) {
+    Verify.verifyAdmin (req, function (err, resp) {
+        // Catch error and throw
         if (err) throw err;
-        dish.comments.id(req.params.commentId).remove();
-        dish.comments.push(req.body);
-        dish.save(function (err, dish) {
+        // We delete the existing commment and insert the updated
+        // comment as a new comment
+        Dishes.findById(req.params.dishId, function (err, dish) {
             if (err) throw err;
-            console.log('Updated Comments!');
-            res.json(dish);
+            dish.comments.id(req.params.commentId).remove();
+            dish.comments.push(req.body);
+            dish.save(function (err, dish) {
+                if (err) throw err;
+                console.log('Updated Comments!');
+                res.json(dish);
+            });
         });
     });
 })
 
-.delete(function (req, res, next) {
-    Dishes.findById(req.params.dishId, function (err, dish) {
-        dish.comments.id(req.params.commentId).remove();
-        dish.save(function (err, resp) {
-            if (err) throw err;
-            res.json(resp);
+.delete(Verify.verifyOrdinaryUser,function (req, res, next) {
+    Verify.verifyAdmin (req, function (err, resp) {
+        // Catch error and throw
+        if (err) throw err;
+        Dishes.findById(req.params.dishId, function (err, dish) {
+            dish.comments.id(req.params.commentId).remove();
+            dish.save(function (err, resp) {
+                if (err) throw err;
+                res.json(resp);
+            });
         });
     });
 });
