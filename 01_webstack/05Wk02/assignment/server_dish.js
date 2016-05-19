@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
 var Dishes = require('./models/dishes');
 
 // Connection URL
-var url = 'mongodb://localhost:27017/conFusion';mongoose.connect(url);
+var url = 'mongodb://localhost:27017/conFusion';
+mongoose.connect(url);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
@@ -13,7 +14,7 @@ db.once('open', function () {
 
     // create a new dish
     Dishes.create({
-        name: 'Uthapizza',
+        name: 'Uthapizza_temp',
         image: 'images/uthapizza.png',
         category: 'mains',
         label: 'Hot',

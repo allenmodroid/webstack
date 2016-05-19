@@ -23,3 +23,8 @@ git pull origin master
 # =========
 You need to add cordova whitelist under your project. Try the following -
 $ cordova plugin add cordova-plugin-whitelist
+
+# =========
+When looking to refresh - not necessary;
+ionic platform remove ios
+ionic platform remove android
