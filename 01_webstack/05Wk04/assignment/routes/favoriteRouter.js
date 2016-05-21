@@ -23,7 +23,6 @@ favoriteRouter.route('/')
 })
 
 
-
 .post(Verify.verifyOrdinaryUser, function(req, res, next) {
     Favorites.findOne({ postedBy: req.decoded._doc._id }).exec(function(err, favorite) {
         if (err) throw err;
@@ -37,7 +36,7 @@ favoriteRouter.route('/')
             });
         }
 
-        // Loop through list to identify duplicate
+        // Loop through dishes list to identify duplicate
         for (var i = (favorite.dishes.length - 1); i >= 0; i--) {
 
             // Check for duplicates in list
@@ -58,8 +57,25 @@ favoriteRouter.route('/')
             res.json(favorite);
         });
 
-    });
-
+    })
 })
+
+.delete(Verify.verifyOrdinaryUser, function (req, res, next) {
+    Favorites.findOne({ postedBy: req.decoded._doc._id }).exec(function(err, favorite) {
+        if (err) throw err;
+
+        for (var i = (favorite.dishes.length - 1); i >= 0; i--) {
+            favorite.dishes.remove(favorite.dishes[i]);
+        }
+
+        favorite.save(function (err, result) {
+            if (err) throw err;
+            res.writeHead(200, {
+                'Content-Type': 'text/plain'
+            });
+            res.end('Deleted all favorites!');
+        });
+    });
+});
 
 module.exports = favoriteRouter;
