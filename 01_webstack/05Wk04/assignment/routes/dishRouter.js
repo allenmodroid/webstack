@@ -41,6 +41,9 @@ dishRouter.route('/')
     });
 });
 
+//****************************************************
+// Config for dish route with parameter
+//****************************************************
 dishRouter.route('/:dishId')
 .get(Verify.verifyOrdinaryUser, function (req, res, next) {
     Dishes.findById(req.params.dishId)
@@ -68,6 +71,10 @@ dishRouter.route('/:dishId')
         res.json(resp);
     });
 });
+
+//****************************************************
+// Config for comment route
+//****************************************************
 
 dishRouter.route('/:dishId/comments')
 .all(Verify.verifyOrdinaryUser)
@@ -110,6 +117,9 @@ dishRouter.route('/:dishId/comments')
     });
 });
 
+//****************************************************
+// Config for comment route with parameter
+//****************************************************
 dishRouter.route('/:dishId/comments/:commentId')
 .all(Verify.verifyOrdinaryUser)
 
