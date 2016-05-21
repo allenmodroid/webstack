@@ -1,0 +1,58 @@
+// Delete Data =======================================
+match (n)-[r]-() delete n, r;
+match (n) delete n;
+
+
+// Loading Data =======================================
+LOAD CSV WITH HEADERS FROM "file:///neo4j_module_datasets/gene_gene_associations_5k.csv" AS line
+
+MERGE (n:TrialGene {Name:line.OFFICIAL_SYMBOL_A})
+
+MERGE (m:TrialGene {Name:line.OFFICIAL_SYMBOL_B})
+
+MERGE (n) -[:AssociatedWith {AssociationType:line.EXPERIMENTAL_SYSTEM}]-> (m)
+
+// =======================================
+
+
+LOAD CSV WITH HEADERS FROM "file:///neo4j_module_datasets/test.csv" AS line
+MERGE (n:MyNode {Name:line.Source})
+
+MERGE (m:MyNode {Name:line.Target})
+
+MERGE (n) -[:TO {dist:line.distance}]-> (m)
+
+
+// Question 7 =======================================
+
+MATCH p = allShortestPaths((OFFICIAL_SYMBOL_A)-[r:AssociatedWith*]-(OFFICIAL_SYMBOL_B))
+
+WHERE OFFICIAL_SYMBOL_A.Name='BRCA1' AND OFFICIAL_SYMBOL_B.Name = 'NBR1'
+
+RETURN EXTRACT(n IN NODES(p)| n.Name) AS Paths
+
+
+// Outdegree =======================================
+match (n:TrialGene)-[r]->()
+
+return n.Name as Node, count(r) as Outdegree
+
+order by Outdegree DESC
+
+union
+
+match (a:TrialGene)-[r]->(leaf)
+
+where not((leaf)-->())
+
+return leaf.Name as Node, 0 as Outdegree
+
+order by Outdegree DESC
+
+
+// Degree Histogram =======================================
+match (n:TrialGene)-[r]-()
+
+with n as nodes, count(distinct r) as degree
+
+return degree, count(nodes) order by degree asc

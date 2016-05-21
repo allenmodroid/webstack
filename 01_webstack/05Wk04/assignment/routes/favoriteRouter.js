@@ -12,48 +12,54 @@ favoriteRouter.use(bodyParser.json());
 // Config for dish route
 //****************************************************
 favoriteRouter.route('/')
-    .get(function(req, res, next) {
-        Favorites.find({})
-            .exec(function(err, dish) {
-                if (err) throw err;
-                res.json(dish);
-            });
-    })
+.get(Verify.verifyOrdinaryUser, function(req, res, next) {
+    Favorites.findOne({ postedBy: req.decoded._doc._id })
+        .populate('postedBy')
+        .populate('dishes')
+        .exec(function(err, dish) {
+            if (err) throw err;
+            res.json(dish);
+        });
+})
 
 
-.post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
+
+.post(Verify.verifyOrdinaryUser, function(req, res, next) {
     Favorites.findOne({ postedBy: req.decoded._doc._id }).exec(function(err, favorite) {
         if (err) throw err;
 
+        // If user's favorites document does not exist
         if (favorite === null) {
-            var favorite = new Favorites({
+
+            // Create new favorites document object
+            favorite = new Favorites({
                 postedBy: req.decoded._doc._id
             });
         }
-        console.log(favorite._id);
 
-        Favorites.findById(favorite._id, function (err, fav) {
+        // Loop through list to identify duplicate
+        for (var i = (favorite.dishes.length - 1); i >= 0; i--) {
 
-            if (err) throw err;
-
-            for (var i = (fav.dishes.length - 1); i >= 0; i--) {
-                if (fav.dishes[i] = req.body._id){
-                    var err = new Error('Favorite dish already exists in list');
-                    err.status = 403;
-                    return next(err);
-                }
+            // Check for duplicates in list
+            if (favorite.dishes[i] == req.body._id){
+                var err = new Error('Dish already exists in favorite list');
+                err.status = 403;
+                return next(err);
             }
+        }
 
-            favorite.dishes.push(req.body._id);
+        // Add dist to favorite list
+        favorite.dishes.push(req.body._id);
 
-            favorite.save(function(err, favorite) {
-                if (err) throw err;
-                console.log('Updated Comments!');
-                res.json(favorite);
-            });
+        // Save to db
+        favorite.save(function(err, favorite) {
+            if (err) throw err;
+            console.log('Updated Comments!');
+            res.json(favorite);
         });
 
     });
+
 })
 
 module.exports = favoriteRouter;

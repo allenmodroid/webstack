@@ -6,15 +6,15 @@
         "nodes":[
             {
                 "id":"org.knime.base.node.io.filereader.FileReaderNodeFactory#File Reader",
-                "nrexecs":12,
-                "exectime":3515,
+                "nrexecs":15,
+                "exectime":4852,
                 "nrcreated":2,
                 "successor":"org.knime.base.node.preproc.bitvector.create.CreateBitVectorNodeFactory#Create Bit Vector"
             },
             {
                 "id":"org.knime.base.node.preproc.partition.PartitionNodeFactory#Partitioning",
-                "nrexecs":6,
-                "exectime":2362,
+                "nrexecs":13,
+                "exectime":2994,
                 "nrcreated":0,
                 "successor":"n/a"
             },
@@ -69,17 +69,17 @@
             },
             {
                 "id":"org.knime.base.node.preproc.filter.column.FilterColumnNodeFactory#Column Filter",
-                "nrexecs":1,
-                "exectime":1,
+                "nrexecs":5,
+                "exectime":6,
                 "nrcreated":0,
                 "successor":"n/a"
             },
             {
                 "id":"org.knime.base.node.preproc.joiner.Joiner2NodeFactory#Joiner",
-                "nrexecs":1,
-                "exectime":390,
+                "nrexecs":14,
+                "exectime":529,
                 "nrcreated":0,
-                "successor":"n/a"
+                "successor":"com.knime.reporting.nodes.dataset.ReportingDataSetNodeFactory#Data to Report"
             },
             {
                 "id":"org.knime.base.node.viz.plotter.box.BoxPlotNodeFactory#Box Plot",
@@ -146,8 +146,8 @@
             },
             {
                 "id":"org.knime.base.node.preproc.cellsplit.CellSplitterNodeFactory#Cell Splitter",
-                "nrexecs":1,
-                "exectime":2,
+                "nrexecs":14,
+                "exectime":65,
                 "nrcreated":0,
                 "successor":"n/a"
             },
@@ -167,8 +167,71 @@
             },
             {
                 "id":"com.knime.reporting.nodes.dataset.ReportingDataSetNodeFactory#Data to Report",
-                "nrexecs":1,
+                "nrexecs":2,
                 "exectime":10,
+                "nrcreated":2,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.preproc.shuffle.ShuffleNodeFactory#Shuffle",
+                "nrexecs":7,
+                "exectime":182,
+                "nrcreated":0,
+                "successor":"org.knime.base.node.mine.cluster.kmeans.ClusterNodeFactory#k-Means (deprecated)"
+            },
+            {
+                "id":"org.knime.base.node.preproc.normalize.NormalizerNodeFactory#Normalizer",
+                "nrexecs":8,
+                "exectime":136,
+                "nrcreated":0,
+                "successor":"org.knime.base.node.mine.cluster.kmeans.ClusterNodeFactory#k-Means (deprecated)"
+            },
+            {
+                "id":"org.knime.base.node.mine.cluster.kmeans.ClusterNodeFactory#k-Means (deprecated)",
+                "nrexecs":13,
+                "exectime":758,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.preproc.groupby.GroupByNodeFactory#GroupBy",
+                "nrexecs":13,
+                "exectime":529,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.ensembles.pmmlporttocell.PMMLPortToCellNodeFactory#PMML To Cell",
+                "nrexecs":13,
+                "exectime":487,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.xml.node.xpath.XPathNodeFactory#XPath (deprecated)",
+                "nrexecs":52,
+                "exectime":482,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.preproc.ungroup.UngroupNodeFactory#Ungroup",
+                "nrexecs":13,
+                "exectime":56,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.preproc.rename.RenameNodeFactory#Column Rename",
+                "nrexecs":13,
+                "exectime":10,
+                "nrcreated":0,
+                "successor":"n/a"
+            },
+            {
+                "id":"org.knime.base.node.io.csvwriter.CSVWriterNodeFactory#CSV Writer",
+                "nrexecs":5,
+                "exectime":51,
                 "nrcreated":1,
                 "successor":"n/a"
             }
@@ -178,9 +241,9 @@
         "wrappedNodes":{
         }
     },
-    "uptime":3454392,
-    "launches":7,
-    "timeSinceLastStart":3010302,
+    "uptime":3426273,
+    "launches":8,
+    "timeSinceLastStart":3229442,
     "crashes":0,
     "properlyShutDown":true
 }

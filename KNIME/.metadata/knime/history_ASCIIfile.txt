@@ -1,8 +1,8 @@
+file:/Users/mopom/Desktop/bank_data_Example.csv
+file:/private/var/folders/xl/6kmm02qx7672phkltq21bbvr0000gn/T/knime_temp_space_mopom_33669/013003_XML_Processing_K-means_centers33673/013003_XML_Processing_K-means_centers/File%20Reader%20(%2312)/drop/adult.data
+file:/home/aaron/Dropbox/prod_workspace/XML_workflow/File%20Reader%20(%2312)/drop/adult.data
+file:/Users/mopom/Desktop/iris.data.csv
+file:/private/var/folders/xl/6kmm02qx7672phkltq21bbvr0000gn/T/knime_temp_space_mopom_33669/013003_XML_Processing_K-means_centers33671/013003_XML_Processing_K-means_centers/File%20Reader%20(%2312)/drop/adult.data
 file:/Users/mopom/Desktop/associationRules/supermarketdataset.csv
 knime://knime.workflow/../shoppingList.csv
 knime://knime.workflow/data.all
-file:/Users/mopom/Desktop/associationRules/shoppingList.csv
-file:/Users/mopom/Desktop/shoppingList.csv
-file:/Volumes/Disk1/Coursera/zSpace/02_big_data/associationRules/shoppingList.csv
-file:/Users/mopom/Desktop/bezdekIris.data.txt
-file:/Users/mopom/Desktop/iris.data.csv
